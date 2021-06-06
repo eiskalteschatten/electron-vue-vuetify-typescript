@@ -1,4 +1,4 @@
-import { BrowserWindow, BrowserWindowConstructorOptions, dialog, Menu, nativeTheme, screen } from 'electron';
+import { BrowserWindow, BrowserWindowConstructorOptions, Menu, nativeTheme, screen } from 'electron';
 import path from 'path';
 import log from 'electron-log';
 
@@ -7,7 +7,7 @@ import getAppMenu from '../menus/appMenus/main';
 
 export const windows = new Set();
 
-export default async (filePath?: string): Promise<BrowserWindow> => {
+export default async (): Promise<BrowserWindow> => {
   // const preferences = load window preferences here;
 
   const { width: screenWidth, height: screenHeight } = screen.getPrimaryDisplay().workAreaSize;
@@ -24,10 +24,6 @@ export default async (filePath?: string): Promise<BrowserWindow> => {
     },
     backgroundColor: nativeTheme.shouldUseDarkColors ? '#222222' : '#f0f0f0',
   };
-
-  if (process.platform === 'darwin') {
-    browserWindowOptions.titleBarStyle = 'hidden';
-  }
 
   // if (preferences.windowX && preferences.windowY) {
   //   browserWindowOptions.x = preferences.windowX;

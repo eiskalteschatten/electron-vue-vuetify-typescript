@@ -1,0 +1,31 @@
+{
+  "name": "glook",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint './**/*.{tsx,ts,js,vue}'",
+    "test": "npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eiskalteschatten/Glook.git"
+  },
+  "author": "Alex Seifert",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eiskalteschatten/Glook/issues"
+  },
+  "homepage": "https://github.com/eiskalteschatten/Glook#readme",
+  "devDependencies": {
+    "@types/node": "^14.17.2",
+    "@typescript-eslint/eslint-plugin": "^4.26.0",
+    "@typescript-eslint/parser": "^4.26.0",
+    "eslint": "^7.28.0",
+    "eslint-plugin-html": "^6.1.2",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-vue": "^7.10.0",
+    "typescript": "^4.3.2"
+  }
+}

@@ -22,12 +22,6 @@ export default (_app: Electron.App): void => {
 
   app.on('window-all-closed', onWindowAllClosed);
 
-  app.on('activate', (e: Event, hasVisibleWindows: boolean): void => {
-    if (!hasVisibleWindows) {
-      openMainWindow();
-    }
-  });
-
   app.on('ready', async (): Promise<void> => {
     const initializeAppPath = 'file://' + path.join(__dirname, '/workers/', 'initializeApp.html');
 
@@ -47,6 +41,8 @@ export default (_app: Electron.App): void => {
       const { default: installExtension, VUEJS_DEVTOOLS } = await import('electron-devtools-installer');
       await installExtension(VUEJS_DEVTOOLS);
     }
+
+    openMainWindow();
 
     setTimeout(() => checkForUpdates(false), 3000);
   });

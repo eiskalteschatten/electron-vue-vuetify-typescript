@@ -18,10 +18,10 @@ export default async (showNoUpdatesDialog = false): Promise<void> => {
 
   if (response.status === 200) {
     const latestVersion = response.data[0];
+    const tagName = `v${config.app.version}`;
 
     if (latestVersion) {
       const checkForPrelease = config.app.version.includes('beta');
-      const tagName = `v${config.app.version}`;
 
       if (latestVersion.tag_name !== tagName && !latestVersion.draft && (!latestVersion.prerelease || checkForPrelease)) {
         log.info(`Update found: current version ${tagName}, latest release ${latestVersion.tag_name}`);
@@ -49,6 +49,9 @@ export default async (showNoUpdatesDialog = false): Promise<void> => {
           cancelId: 0,
         });
       }
+    }
+    else {
+      log.info(`No updates found: current version ${tagName}`);
     }
   }
   else {

@@ -5,7 +5,14 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint './**/*.{tsx,ts,js,vue}'",
-    "test": "npm run lint"
+    "test": "npm run lint",
+    "postinstall": "electron-builder install-app-deps",
+    "prepack": "npm run build",
+    "pack": "electron-builder --dir",
+    "pack:skipsigning": "cross-env CSC_IDENTITY_AUTO_DISCOVERY=false npm run pack",
+    "predist": "npm run build",
+    "dist": "electron-builder",
+    "dist:skipsigning": "cross-env CSC_IDENTITY_AUTO_DISCOVERY=false npm run dist"
   },
   "repository": {
     "type": "git",
@@ -17,15 +24,55 @@
     "url": "https://github.com/eiskalteschatten/Glook/issues"
   },
   "homepage": "https://github.com/eiskalteschatten/Glook#readme",
+  "build": {
+    "productName": "Glook",
+    "copyright": "Copyright © 2021 Alex Seifert",
+    "appId": "com.alexseifert.glook",
+    "buildDependenciesFromSource": true,
+    "files": [
+      "build"
+    ],
+    "directories": {
+      "buildResources": "build-resources"
+    },
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "category": "public.app-category.productivity",
+      "entitlements": "build-resources/entitlements.mac.plist",
+      "type": "productivity",
+      "darkModeSupport": true,
+      "icon": "build-resources/icon.icns"
+    },
+    "linux": {
+      "target": [
+        "deb",
+        "tar.gz"
+      ],
+      "category": "Office"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "build-resources/icon.ico"
+    }
+  },
   "devDependencies": {
     "@types/node": "^14.17.2",
     "@typescript-eslint/eslint-plugin": "^4.26.0",
     "@typescript-eslint/parser": "^4.26.0",
+    "electron": "^13.1.1",
+    "electron-builder": "^22.10.5",
     "eslint": "^7.28.0",
     "eslint-plugin-html": "^6.1.2",
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-vue": "^7.10.0",
-    "typescript": "^4.3.2"
+    "typescript": "^4.3.2",
+    "vue-devtools": "^5.1.4"
   }
 }

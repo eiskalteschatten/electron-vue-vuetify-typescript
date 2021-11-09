@@ -49,8 +49,10 @@ import Vue from 'vue';
 export default Vue.extend({
   name: 'App',
 
-  data: () => ({
-    //
-  }),
+  mounted () {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+      this.$vuetify.theme.dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    });
+  },
 });
 </script>

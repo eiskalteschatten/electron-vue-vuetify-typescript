@@ -22,7 +22,7 @@ export default async (): Promise<BrowserWindow> => {
       contextIsolation: true,
       preload: path.join(__dirname, '../preload.js'),
     },
-    backgroundColor: nativeTheme.shouldUseDarkColors ? '#222222' : '#f0f0f0',
+    backgroundColor: nativeTheme.shouldUseDarkColors ? '#111111' : '#f0f0f0',
   };
 
   // if (preferences.windowX && preferences.windowY) {
